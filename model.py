@@ -10,7 +10,7 @@ class BradleyTerry(nn.Module):
     def forward(self, x):
         winners = x[:, 0]
         losers = x[:, 1]
-        probs = self.strengths[winners] / (self.strengths[winners] + self.strengths[losers])
+        probs = torch.exp(self.strengths[winners]) / (torch.exp(self.strengths[winners]) + torch.exp(self.strengths[losers]))
         return probs
 
 
